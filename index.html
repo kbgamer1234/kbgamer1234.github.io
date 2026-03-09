@@ -21,17 +21,34 @@ align-items:center;
 justify-content:center;
 overflow:hidden;
 color:white;
-
-background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#533483);
-background-size:400% 400%;
-animation:bgmove 15s ease infinite;
 }
 
-@keyframes bgmove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+/* ANIME VIDEO BACKGROUND */
+
+.video-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+filter:brightness(0.6);
 }
+
+/* DARK OVERLAY */
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+z-index:-1;
+}
+
+/* GLASS CONTAINER */
 
 .container{
 width:900px;
@@ -68,11 +85,11 @@ gap:20px;
 background:rgba(255,255,255,0.08);
 padding:20px;
 border-radius:14px;
-transition:0.3s;
+transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-6px) scale(1.04);
+transform:translateY(-6px) scale(1.05);
 background:rgba(255,255,255,0.18);
 }
 
@@ -83,6 +100,8 @@ margin-bottom:10px;
 .card p{
 line-height:1.6;
 }
+
+/* SOCIAL BUTTONS */
 
 .socials{
 margin-top:35px;
@@ -107,12 +126,16 @@ transform:translateY(-5px) scale(1.1);
 box-shadow:0 0 25px rgba(255,255,255,0.8);
 }
 
+/* FOOTER */
+
 .footer{
 margin-top:30px;
 text-align:center;
 opacity:.7;
 font-size:14px;
 }
+
+/* SAKURA PETALS */
 
 .petal{
 position:absolute;
@@ -133,6 +156,8 @@ transform:translateY(110vh) rotate(360deg);
 }
 }
 
+/* CURSOR GLOW */
+
 .cursor{
 position:fixed;
 width:20px;
@@ -148,6 +173,13 @@ filter:blur(8px);
 </head>
 
 <body>
+
+<!-- ANIME BACKGROUND VIDEO -->
+<video class="video-bg" autoplay muted loop playsinline>
+<source src="https://cdn.pixabay.com/video/2023/03/02/152779-804562511_large.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
 
 <div class="cursor" id="cursor"></div>
 
@@ -213,7 +245,9 @@ Website by Yashu Bisht
 
 <script>
 
-for(let i=0;i<30;i++){
+/* SAKURA GENERATOR */
+
+for(let i=0;i<35;i++){
 
 let petal=document.createElement("div");
 petal.className="petal";
@@ -225,6 +259,8 @@ petal.style.opacity=Math.random();
 document.body.appendChild(petal);
 
 }
+
+/* CURSOR GLOW */
 
 const cursor=document.getElementById("cursor");
 
