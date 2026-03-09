@@ -21,47 +21,34 @@ align-items:center;
 justify-content:center;
 overflow:hidden;
 color:white;
+
+/* animated anime background */
+background:linear-gradient(-45deg,#141e30,#243b55,#3a1c71,#d76d77);
+background-size:400% 400%;
+animation:bgmove 12s ease infinite;
 }
 
-/* ANIME VIDEO BACKGROUND */
-
-.video-bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-2;
-filter:brightness(0.6);
+@keyframes bgmove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
-/* DARK OVERLAY */
-
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.35);
-z-index:-1;
-}
-
-/* GLASS CONTAINER */
+/* GLASS UI */
 
 .container{
 width:900px;
 padding:40px;
 border-radius:20px;
-background:rgba(0,0,0,0.45);
-backdrop-filter:blur(10px);
-box-shadow:0 20px 60px rgba(0,0,0,0.7);
-animation:fade 1.5s ease;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
+animation:fade 1.2s ease;
 }
 
 @keyframes fade{
-from{opacity:0; transform:translateY(20px);}
+from{opacity:0; transform:translateY(25px);}
 to{opacity:1; transform:translateY(0);}
 }
 
@@ -71,9 +58,11 @@ margin-bottom:8px;
 }
 
 .subtitle{
-opacity:.9;
+opacity:.85;
 margin-bottom:30px;
 }
+
+/* cards */
 
 .grid{
 display:grid;
@@ -89,16 +78,12 @@ transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-6px) scale(1.05);
+transform:translateY(-8px) scale(1.05);
 background:rgba(255,255,255,0.18);
 }
 
 .card h2{
 margin-bottom:10px;
-}
-
-.card p{
-line-height:1.6;
 }
 
 /* SOCIAL BUTTONS */
@@ -117,69 +102,66 @@ color:white;
 padding:12px 24px;
 border-radius:12px;
 font-weight:600;
+
 background:linear-gradient(45deg,#ff4b91,#6a5cff);
+
 transition:.25s;
 }
 
 .socials a:hover{
 transform:translateY(-5px) scale(1.1);
-box-shadow:0 0 25px rgba(255,255,255,0.8);
+box-shadow:0 0 20px rgba(255,255,255,0.8);
 }
 
-/* FOOTER */
+/* footer */
 
 .footer{
 margin-top:30px;
 text-align:center;
 opacity:.7;
-font-size:14px;
 }
 
-/* SAKURA PETALS */
+/* sakura petals */
 
 .petal{
 position:absolute;
-width:10px;
-height:10px;
-background:#ffb7c5;
+width:8px;
+height:8px;
+background:#ffc0cb;
 border-radius:50%;
-opacity:0.8;
+opacity:.8;
 animation:fall linear infinite;
 }
 
 @keyframes fall{
+
 0%{
 transform:translateY(-10vh) rotate(0deg);
 }
+
 100%{
 transform:translateY(110vh) rotate(360deg);
 }
+
 }
 
-/* CURSOR GLOW */
+/* glowing cursor */
 
 .cursor{
 position:fixed;
-width:20px;
-height:20px;
+width:18px;
+height:18px;
 border-radius:50%;
-background:rgba(255,255,255,0.7);
+background:white;
 pointer-events:none;
-mix-blend-mode:overlay;
-filter:blur(8px);
+filter:blur(6px);
+mix-blend-mode:difference;
 }
 
 </style>
 </head>
 
 <body>
-
-<!-- ANIME BACKGROUND VIDEO -->
-<video class="video-bg" autoplay muted loop playsinline>
-<source src="https://cdn.pixabay.com/video/2023/03/02/152779-804562511_large.mp4" type="video/mp4">
-</video>
-
-<div class="overlay"></div>
 
 <div class="cursor" id="cursor"></div>
 
@@ -194,7 +176,7 @@ filter:blur(8px);
 <h2>About Me</h2>
 <p>
 Age: 15<br>
-From: Uttarakhand, India<br>
+From: Uttarakhand<br>
 Learning coding & app development
 </p>
 </div>
@@ -212,8 +194,7 @@ Cybersecurity (learning)
 <h2>Projects</h2>
 <p>
 100+ Websites<br>
-Coding experiments<br>
-Learning new tech
+Coding experiments
 </p>
 </div>
 
@@ -230,10 +211,10 @@ Exploring technology
 
 <div class="socials">
 
-<a href="https://instagram.com/yourusername" target="_blank">Instagram</a>
-<a href="https://facebook.com/yourusername" target="_blank">Facebook</a>
-<a href="https://github.com/yourusername" target="_blank">GitHub</a>
-<a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
+<a href="https://instagram.com/" target="_blank">Instagram</a>
+<a href="https://facebook.com/" target="_blank">Facebook</a>
+<a href="https://github.com/" target="_blank">GitHub</a>
+<a href="https://twitter.com/" target="_blank">Twitter</a>
 
 </div>
 
@@ -245,28 +226,34 @@ Website by Yashu Bisht
 
 <script>
 
-/* SAKURA GENERATOR */
+/* sakura petals generator */
 
-for(let i=0;i<35;i++){
+for(let i=0;i<40;i++){
 
 let petal=document.createElement("div");
+
 petal.className="petal";
 
 petal.style.left=Math.random()*100+"vw";
-petal.style.animationDuration=(6+Math.random()*6)+"s";
+
+petal.style.animationDuration=(6+Math.random()*8)+"s";
+
 petal.style.opacity=Math.random();
 
 document.body.appendChild(petal);
 
 }
 
-/* CURSOR GLOW */
+/* glowing cursor */
 
 const cursor=document.getElementById("cursor");
 
 document.addEventListener("mousemove",e=>{
+
 cursor.style.left=e.clientX+"px";
+
 cursor.style.top=e.clientY+"px";
+
 });
 
 </script>
