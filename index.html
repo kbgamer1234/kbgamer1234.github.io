@@ -3,7 +3,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Yashu Bisht | Hacker Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yashu Bisht</title>
 
 <style>
 
@@ -11,91 +12,75 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:monospace;
+font-family: "Segoe UI", sans-serif;
 }
 
 body{
-background:black;
-color:#00ff9c;
-overflow:hidden;
-}
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
-
-.main{
 height:100vh;
+background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
-.panel{
-width:750px;
-background:rgba(0,0,0,0.8);
-border:1px solid #00ff9c;
-border-radius:10px;
-padding:35px;
-box-shadow:0 0 25px #00ff9c;
+.container{
+width:900px;
+backdrop-filter: blur(20px);
+background: rgba(255,255,255,0.05);
+border-radius:20px;
+padding:40px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+transition: all .3s ease;
+}
+
+.container:hover{
+transform: translateY(-5px);
 }
 
 h1{
-font-size:32px;
-margin-bottom:20px;
-text-shadow:0 0 10px #00ff9c;
-}
-
-.section{
-margin-top:25px;
-}
-
-.section h2{
-font-size:20px;
+font-size:42px;
 margin-bottom:10px;
-color:#00ff9c;
 }
 
-.typing{
-overflow:hidden;
-white-space:nowrap;
-border-right:3px solid #00ff9c;
-animation:typing 4s steps(40,end),blink .7s infinite;
+.subtitle{
+opacity:0.8;
+margin-bottom:30px;
 }
 
-@keyframes typing{
-from{width:0}
-to{width:100%}
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 }
 
-@keyframes blink{
-50%{border-color:transparent}
+.card{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
+transition:.25s;
 }
 
-.skill{
-margin-top:10px;
+.card:hover{
+background:rgba(255,255,255,0.08);
+transform:scale(1.03);
 }
 
-.bar{
-height:8px;
-background:#003d2c;
-border-radius:5px;
-margin-top:4px;
+.card h2{
+margin-bottom:10px;
+font-size:20px;
 }
 
-.fill{
-height:8px;
-background:#00ff9c;
-border-radius:5px;
-animation:load 3s forwards;
+.card p{
+opacity:0.9;
+line-height:1.6;
 }
 
-@keyframes load{
-from{width:0}
-to{width:90%}
+.footer{
+margin-top:30px;
+opacity:0.6;
+font-size:14px;
+text-align:center;
 }
 
 </style>
@@ -103,104 +88,55 @@ to{width:90%}
 
 <body>
 
-<canvas id="matrix"></canvas>
+<div class="container">
 
-<div class="main">
+<h1>Yashu Bisht</h1>
+<p class="subtitle">Developer • Tech Enthusiast • Learning Everyday</p>
 
-<div class="panel">
+<div class="grid">
 
-<h1 class="typing">> Initializing Yashu_Bisht_System...</h1>
-
-<div class="section">
+<div class="card">
 <h2>About Me</h2>
-<p>Name: Yashu Bisht</p>
-<p>Age: 15</p>
-<p>Location: Uttarakhand, India</p>
-<p>Status: Coding & App Development</p>
+<p>
+Age: 15<br>
+From: Uttarakhand, India<br>
+Learning coding and app development.
+</p>
 </div>
 
-<div class="section">
+<div class="card">
 <h2>Skills</h2>
-
-<div class="skill">
-HTML
-<div class="bar"><div class="fill"></div></div>
+<p>
+HTML<br>
+JavaScript<br>
+Cybersecurity (learning)
+</p>
 </div>
 
-<div class="skill">
-JavaScript
-<div class="bar"><div class="fill"></div></div>
-</div>
-
-<div class="skill">
-Cybersecurity
-<div class="bar"><div class="fill"></div></div>
-</div>
-
-</div>
-
-<div class="section">
+<div class="card">
 <h2>Projects</h2>
-<p>100+ Websites</p>
-<p>Apps & Coding Experiments</p>
+<p>
+100+ Websites<br>
+Apps and coding experiments.
+</p>
 </div>
 
-<div class="section">
+<div class="card">
 <h2>Hobbies</h2>
-<p>Coding</p>
-<p>App Development</p>
-<p>Learning Cybersecurity</p>
+<p>
+Coding<br>
+App Development<br>
+Exploring new technology
+</p>
 </div>
 
 </div>
 
+<div class="footer">
+Built by Yashu Bisht
 </div>
 
-<script>
-
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-let letters = "01";
-letters = letters.split("");
-
-let fontSize = 14;
-let columns = canvas.width / fontSize;
-
-let drops = [];
-
-for(let x = 0; x < columns; x++)
-drops[x] = 1;
-
-function draw(){
-
-ctx.fillStyle = "rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle = "#0f0";
-ctx.font = fontSize + "px monospace";
-
-for(let i = 0; i < drops.length; i++){
-
-let text = letters[Math.floor(Math.random()*letters.length)];
-
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
-drops[i] = 0;
-
-drops[i]++;
-
-}
-
-}
-
-setInterval(draw,33);
-
-</script>
+</div>
 
 </body>
 </html>
